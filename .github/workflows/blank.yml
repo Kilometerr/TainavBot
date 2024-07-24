@@ -27,7 +27,6 @@ jobs:
         uses: actions/setup-java@v4.2.1
         with:
           java-version: '21'
-          distribution: 'jdk'
 
       - name: Build with Maven
         run: mvn clean install -DskipTests 
