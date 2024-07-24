@@ -32,5 +32,10 @@ jobs:
 
       - name: Run tests
         run: mvn test
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: '/language:java'
     
           
