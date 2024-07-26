@@ -1,4 +1,4 @@
-package com.tainavbot.server.application;
+package com.tainavbot.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

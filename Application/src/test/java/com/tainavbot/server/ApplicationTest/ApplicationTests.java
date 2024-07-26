@@ -1,6 +1,6 @@
-package com.tainavbot.server.Application;
+package com.tainavbot.server.ApplicationTest;
 
-import com.tainavbot.server.application.Application;
+import com.tainavbot.server.Application;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
