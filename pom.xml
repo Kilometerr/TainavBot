@@ -34,6 +34,12 @@
         <java.version>21</java.version>
         <sonar.organization>kilometerr</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.coverage.exclusions>
+            **/test/**/*,**/dto/**/*,**/config/**/*,**/model/**/*
+        </sonar.coverage.exclusions>
+        <sonar.exclusions>
+            **/test/**/*,**/dto/**/*,**/config/**/*,**/model/**/*
+        </sonar.exclusions>
     </properties>
     <dependencies>
         <dependency>
