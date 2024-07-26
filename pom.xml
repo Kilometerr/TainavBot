@@ -35,10 +35,17 @@
         <sonar.organization>kilometerr</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.exclusions>
-            **/test/**/*,**/dto/**/*,**/config/**/*,**/model/**/*,**/application.java
+            **/test/**/*,
+            **/dto/**/*,
+            **/config/**/*,
+            **/model/**/*,
+            Application/src/main/java/com/tainavbot/server/Application.java
         </sonar.coverage.exclusions>
         <sonar.exclusions>
-            **/test/**/*,**/dto/**/*,**/config/**/*,**/model/**/*
+            **/test/**/*,
+            **/dto/**/*,
+            **/config/**/*,
+            **/model/**/*
         </sonar.exclusions>
     </properties>
     <dependencies>
