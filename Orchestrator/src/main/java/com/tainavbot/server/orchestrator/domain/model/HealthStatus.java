@@ -1,4 +1,6 @@
 package com.tainavbot.server.orchestrator.domain.model;
 
-public record HealthStatus(String status) {
+import com.tainavbot.server.orchestrator.domain.enumeration.HealthStatusEnum;
+
+public record HealthStatus(HealthStatusEnum healthStatusEnum, String message) {
 }

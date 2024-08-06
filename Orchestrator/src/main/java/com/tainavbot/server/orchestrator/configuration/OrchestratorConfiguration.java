@@ -1,13 +1,18 @@
 package com.tainavbot.server.orchestrator.configuration;
 
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.ComponentScan;
+
+import com.tainavbot.server.discordbot.infrastructure.api.HealthCheck;
+import com.tainavbot.server.orchestrator.infrastructure.adapter.secondary.DiscordBotAdapter;
+import com.tainavbot.server.orchestrator.infrastructure.adapter.secondary.mapper.HealthStatusOutputMapper;
+import org.mapstruct.factory.Mappers;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
-@ComponentScan(basePackages = "com.tainavbot.server")
-@EnableAsync
-@EnableCaching
 public class OrchestratorConfiguration {
+
+    @Bean
+    protected DiscordBotAdapter discordBotAdapter(HealthCheck healthCheck) {
+        return new DiscordBotAdapter(healthCheck, Mappers.getMapper(HealthStatusOutputMapper.class));
+    }
 }

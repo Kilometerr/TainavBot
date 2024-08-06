@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.concurrent.CompletableFuture;
-
 @RestController
 @RequestMapping("/health")
 @RequiredArgsConstructor
@@ -16,8 +14,7 @@ public class HealthCheckController {
     private final HealthCheckUC healthCheckUC;
 
     @GetMapping
-    public CompletableFuture<HealthStatus> getHealthStatus() {
-        System.out.println("asdas");
+    public HealthStatus getHealthStatus() {
         return healthCheckUC.checkHealth();
     }
 }
