@@ -1,24 +1,16 @@
 name: CIJAVA
 
-# Controls when the workflow will run
 on:
   push:
     branches:
-      - '**'  # Trigger on push to any branch
-
-  # Allows you to run this workflow manually from the Actions tab
+      - '**'
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
       - name: Setup Java JDK
@@ -30,19 +22,32 @@ jobs:
       - name: Cache SonarCloud packages
         uses: actions/cache@v3
         with:
-            path: ~/.sonar/cache
-            key: ${{ runner.os }}-sonar
-            restore-keys: ${{ runner.os }}-sonar
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
             
       - name: Cache Maven packages
         uses: actions/cache@v3
         with:
-                path: ~/.m2
-                key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-                restore-keys: ${{ runner.os }}-m2
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
                 
+      - name: Build with Maven
+        run: mvn clean install -B -V
+
       - name: Build and analyze
         env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Kilometerr_TainavBot
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Kilometerr_TainavBot
+
+      - name: Debug information on failure
+        if: failure()
+        run: |
+          echo "Maven home:"
+          mvn -version
+          echo "Java version:"
+          java -version
+          echo "Contents of .m2 directory:"
+          ls -R ~/.m2
