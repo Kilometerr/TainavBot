@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class CheckHealthServiceImpl implements CheckHealthService {
 
     @Autowired
-    private DiscordConfig discordConfig; //TODO fix
+    private DiscordConfig discordConfig;
 
     private JDA jda;
 
@@ -21,16 +21,16 @@ public class CheckHealthServiceImpl implements CheckHealthService {
     @PostConstruct
     public void init() {
         this.jda = JDABuilder.createDefault(discordConfig.getToken()).build();
-        jda.awaitReady(); // Blocking operation until JDA is ready
+        jda.awaitReady();
     }
 
     @Override
     public void checkHealthStatus() {
         TextChannel channel = jda.getTextChannelById(discordConfig.getChannelId());
         if (channel != null) {
-            channel.sendMessage("Its alive!").queue(); //TODO extend functionality for db
+            channel.sendMessage("Its alive!").queue();
         } else {
-            throw new IllegalArgumentException("Channel ID is not valid"); //TODO refactor with extansion for db
+            throw new IllegalArgumentException("Channel ID is not valid");
         }
     }
 }

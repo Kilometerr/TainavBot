@@ -27,6 +27,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.3.4</version>
         </dependency>
         <dependency>
             <groupId>com.tainavbot.server</groupId>
@@ -36,11 +37,6 @@
         <dependency>
             <groupId>com.tainavbot.server</groupId>
             <artifactId>DiscordBotApi</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tainavbot.server</groupId>
-            <artifactId>DiscordBotCore</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
