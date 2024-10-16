@@ -1,6 +1,8 @@
 package com.tainavbot.server.discordbot.service;
 
 import com.tainavbot.server.discordbot.configuration.DiscordConfig;
+import com.tainavbot.server.discordbot.domain.enumeration.HealthStatusEnum;
+import com.tainavbot.server.discordbot.domain.model.HealthStatus;
 import jakarta.annotation.PostConstruct;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
@@ -25,12 +27,13 @@ public class CheckHealthServiceImpl implements CheckHealthService {
     }
 
     @Override
-    public void checkHealthStatus() {
+    public HealthStatus checkHealthStatus() {
         TextChannel channel = jda.getTextChannelById(discordConfig.getChannelId());
-        if (channel != null) {
-            channel.sendMessage("Its alive!").queue();
-        } else {
+        if (channel == null) {
             throw new IllegalArgumentException("Channel ID is not valid");
+        } else {
+            channel.sendMessage("Its alive!").queue();
+            return new HealthStatus(HealthStatusEnum.OK, "OK");
         }
     }
 }
