@@ -13,7 +13,7 @@ class HexagonalArchitectureTest {
     private final String DOMAIN_MODEL_PACKAGE = DOMAIN_PACKAGE + ".model..";
     private final String DOMAIN_VO_PACKAGE = DOMAIN_PACKAGE + ".vo";
     private final String DOMAIN_VOS_PACKAGE = DOMAIN_VO_PACKAGE + ".vo";
-    private final String ROOT_PACKAGE = "com.tainavbot.server.orchestrator";
+    private final String ROOT_PACKAGE = "com.tainavbot.server";
     private final String DOMAIN_SERVICE_PACKAGE = DOMAIN_PACKAGE + ".service..";
     private final String APPLICATION_SERVICE_PACKAGE = DOMAIN_PACKAGE + ".port.primary..";
     private final String INFRASTRUCTURE_PACKAGE = ".infrastructure";
@@ -25,11 +25,14 @@ class HexagonalArchitectureTest {
     private final String DOMAIN_EXCEPTION_PACKAGE = DOMAIN_PACKAGE + ".exception..";
     private final String DOMAIN_PERSISTENCE_PORT_PACKAGE = DOMAIN_PACKAGE + ".port.secondary";
     private final String DOMAIN_PERSISTENCE_PORTS_PACKAGE = DOMAIN_PERSISTENCE_PORT_PACKAGE + "..";
+    private final String ORCHESTRATOR = ".orchestrator";
+    private final String DISCORD_BOT = ".discordbot";
 
-    private final JavaClasses classes = new ClassFileImporter().importPackages(pack(DOMAIN_PACKAGE), pack(INFRASTRUCTURE_PACKAGE)); //TODO ADD MORE THAN ORCHESTRATOR
+    private JavaClasses classes;
 
     @Test
     void testHexagonalArchitecture() {
+        setUpClasses();
         ArchRule rule = onionArchitecture()
                 .domainModels(
                         pack(DOMAIN_MODEL_PACKAGE),
@@ -48,7 +51,18 @@ class HexagonalArchitectureTest {
         rule.check(classes);
     }
 
+    private void setUpClasses(){
+
+        this.classes = new ClassFileImporter().importPackages(
+                packClasses(ORCHESTRATOR, DOMAIN_PACKAGE), packClasses(ORCHESTRATOR, INFRASTRUCTURE_PACKAGE),
+                packClasses(DISCORD_BOT, DOMAIN_PACKAGE), packClasses(DISCORD_BOT, INFRASTRUCTURE_PACKAGE));
+    }
+
     private String pack(String packageName) {
         return ROOT_PACKAGE + packageName;
+    }
+
+    private String packClasses(String module, String packageName) {
+        return ROOT_PACKAGE + module + packageName;
     }
 }

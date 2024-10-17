@@ -22,6 +22,12 @@
             <artifactId>Orchestrator</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.tainavbot.server</groupId>
+            <artifactId>DiscordBotCore</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- TEST -->
         <dependency>
             <groupId>com.tngtech.archunit</groupId>

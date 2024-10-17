@@ -1,6 +1,6 @@
 package com.tainavbot.server.orchestrator.domain.port.primary.mapper;
 
-import com.tainavbot.server.orchestrator.domain.model.HealthStatus;
+import com.tainavbot.server.orchestrator.domain.vo.HealthStatusVO;
 import com.tainavbot.server.orchestrator.infrastructure.adapter.primary.api.dto.HealthStatusResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -9,5 +9,5 @@ import org.mapstruct.Mapping;
 public interface HealthCheckMapper {
 
     @Mapping(target = "healthStatusEnumResponse", source = "healthStatusEnum")
-    HealthStatusResponse map(HealthStatus healthStatus);
+    HealthStatusResponse map(HealthStatusVO healthStatus);
 }
