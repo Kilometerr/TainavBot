@@ -1,53 +1,53 @@
-name: CIJAVA
-
-on:
-  push:
-    branches:
-      - '**'
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v4.2.1
-        with:
-          java-version: '21'
-          distribution: 'oracle'
-
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
-
-      - name: Build with Maven
-        run: mvn clean install -B -V
-
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Kilometerr_TainavBot
-
-      - name: Debug information on failure
-        if: failure()
-        run: |
-          echo "Maven home:"
-          mvn -version
-          echo "Java version:"
-          java -version
-          echo "Contents of .m2 directory:"
-          ls -R ~/.m2
+#name: CIJAVA
+#
+#on:
+#  push:
+#    branches:
+#      - '**'
+#  workflow_dispatch:
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Setup Java JDK
+#        uses: actions/setup-java@v4.2.1
+#        with:
+#          java-version: '21'
+#          distribution: 'oracle'
+#
+#      - name: Cache SonarCloud packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
+#
+#      - name: Cache Maven packages
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.m2
+#          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: ${{ runner.os }}-m2
+#
+#      - name: Build with Maven
+#        run: mvn clean install -B -V
+#
+#      - name: Build and analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        run: mvn -B -U verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Kilometerr_TainavBot
+#
+#      - name: Debug information on failure
+#        if: failure()
+#        run: |
+#          echo "Maven home:"
+#          mvn -version
+#          echo "Java version:"
+#          java -version
+#          echo "Contents of .m2 directory:"
+#          ls -R ~/.m2

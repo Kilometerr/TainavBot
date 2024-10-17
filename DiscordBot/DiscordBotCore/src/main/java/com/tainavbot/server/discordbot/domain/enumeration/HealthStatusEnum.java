@@ -2,5 +2,5 @@ package com.tainavbot.server.discordbot.domain.enumeration;
 
 public enum HealthStatusEnum {
     OK,
-    DEAD
+    NOT_OK
 }
