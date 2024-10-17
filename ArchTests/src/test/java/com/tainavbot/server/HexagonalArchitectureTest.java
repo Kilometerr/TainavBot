@@ -13,9 +13,9 @@ class HexagonalArchitectureTest {
     private final String DOMAIN_MODEL_PACKAGE = DOMAIN_PACKAGE + ".model..";
     private final String DOMAIN_VO_PACKAGE = DOMAIN_PACKAGE + ".vo";
     private final String DOMAIN_VOS_PACKAGE = DOMAIN_VO_PACKAGE + ".vo";
-    private final String ROOT_PACKAGE = "com.tainavbot.server";
+    private final String ROOT_PACKAGE = "com.tainavbot.server.orchestrator";
     private final String DOMAIN_SERVICE_PACKAGE = DOMAIN_PACKAGE + ".service..";
-    private final String APPLICATION_SERVICE_PACKAGE = DOMAIN_PACKAGE + "port.primary..";
+    private final String APPLICATION_SERVICE_PACKAGE = DOMAIN_PACKAGE + ".port.primary..";
     private final String INFRASTRUCTURE_PACKAGE = ".infrastructure";
     private final String INFRASTRUCTURE_PRIMARY_ADAPTERS_PACKAGE = INFRASTRUCTURE_PACKAGE + ".adapter.primary";
     private final String INFRASTRUCTURE_PERSISTENCE_PRIMARY_ADAPTERS_PACKAGE = INFRASTRUCTURE_PACKAGE + ".adapter.secondary";
@@ -26,7 +26,7 @@ class HexagonalArchitectureTest {
     private final String DOMAIN_PERSISTENCE_PORT_PACKAGE = DOMAIN_PACKAGE + ".port.secondary";
     private final String DOMAIN_PERSISTENCE_PORTS_PACKAGE = DOMAIN_PERSISTENCE_PORT_PACKAGE + "..";
 
-    private final JavaClasses classes = new ClassFileImporter().importPackages(pack(DOMAIN_PACKAGE), pack(INFRASTRUCTURE_PACKAGE));
+    private final JavaClasses classes = new ClassFileImporter().importPackages(pack(DOMAIN_PACKAGE), pack(INFRASTRUCTURE_PACKAGE)); //TODO ADD MORE THAN ORCHESTRATOR
 
     @Test
     void testHexagonalArchitecture() {

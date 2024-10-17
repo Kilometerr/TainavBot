@@ -1,4 +1,4 @@
-package com.tainavbot.server.orchestrator.infrastructure.adapter.primary.mapper;
+package com.tainavbot.server.orchestrator.domain.port.primary.mapper;
 
 import com.tainavbot.server.orchestrator.domain.model.HealthStatus;
 import com.tainavbot.server.orchestrator.infrastructure.adapter.primary.api.dto.HealthStatusResponse;
