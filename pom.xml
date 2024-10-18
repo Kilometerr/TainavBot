@@ -18,6 +18,7 @@
         <module>Application</module>
         <module>Orchestrator</module>
         <module>DiscordBot</module>
+        <module>ArchTests</module>
     </modules>
 
     <url/>
