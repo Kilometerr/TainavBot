@@ -5,7 +5,7 @@ import com.tainavbot.server.discordbot.service.CheckHealthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("discordBotHealthCheck")
 @RequiredArgsConstructor
 public class HealthCheckPortImpl implements HealthCheckPort {
     protected final CheckHealthService checkHealthService;
